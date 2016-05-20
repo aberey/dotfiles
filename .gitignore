@@ -13,6 +13,7 @@
 .config
 .coursier
 .docker
+.dropbox
 .ivy2
 .local
 .macports
@@ -26,6 +27,7 @@ Desktop
 Dev
 Documents
 Downloads
+Dropbox
 Library
 Movies
 Music

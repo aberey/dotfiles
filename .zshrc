@@ -137,7 +137,7 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
  
 . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
-export HOMEBREW_GITHUB_API_TOKEN="e15ceb62ee255873afeb54af3cb26f2c940311d2"
+export HOMEBREW_GITHUB_API_TOKEN=""
 
 eval "$(direnv hook zsh)"
 
