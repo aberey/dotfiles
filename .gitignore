@@ -2,9 +2,13 @@
 .DS_Store
 .Xauthority
 .bash_history
+.lesshst
 .rnd
+.scala_history
 .serverauth*
 .viminfo   
+.zsh-update
+.zsh_history
 
 .Trash/
 .account
@@ -33,4 +37,5 @@ Movies
 Music
 Pictures
 Public
+QT
 VirtualBox VMs

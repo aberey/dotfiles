@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-#export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,14 +45,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(ant brew docker docker-compose git mosh mvn osx sbt scala sudo terraform tmux vagrant)
 
-# source $ZSH/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
+# export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -90,7 +90,7 @@ export LANG=en_US.UTF-8
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib 
  
 #if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-	#export TERM='xterm-256color'
+  export TERM='xterm-256color'
 #else
 	#export TERM='xterm-color'
 #fi
@@ -134,10 +134,15 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
 #alias addM='git status --porcelain | grep "^.M " | cut -c4- | xargs git add'
 #alias addQ='git status --porcelain | grep "^?? " | cut -c4- | xargs git add'
 #alias addD='git status --porcelain | grep "^.D " | cut -c4- | xargs git rm'
- 
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh
 
-export HOMEBREW_GITHUB_API_TOKEN=""
+alias zshrc='vim ~/.zshrc'
+alias vimrc='vim ~/.vim/vimrc'
+ 
+export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
+. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+
+
+export HOMEBREW_GITHUB_API_TOKEN="62ee255873afeb54af3cb26f2c940311d2"
 
 eval "$(direnv hook zsh)"
 
