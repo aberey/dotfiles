@@ -146,4 +146,4 @@ export HOMEBREW_GITHUB_API_TOKEN="62ee255873afeb54af3cb26f2c940311d2"
 
 eval "$(direnv hook zsh)"
 
-eval "$(docker-machine env default)"
+eval "$(docker-machine env ganesha-mille-1)"
