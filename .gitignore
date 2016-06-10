@@ -6,7 +6,8 @@
 .rnd
 .scala_history
 .serverauth*
-.viminfo   
+.viminfo
+.zcompdump*
 .zsh-update
 .zsh_history
 
