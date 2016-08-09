@@ -73,22 +73,22 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
- 
+
 #export http_proxy=http://172.16.1.10:8080
 #export https_proxy=http://172.16.1.10:8080
 #export JAVA_HOME=/usr/java/jdk1.7.0_02/
 #export SCALA_HOME=~/scala-2.9.2/
 #export ANT_HOME=~/apache-ant-1.8.4/
-#export P4CONFIG=.p4config 
+#export P4CONFIG=.p4config
 #export GIT_COMMITTER_NAME='Rey Abe'
 #export GIT_COMMITTER_EMAIL='rey@reyabe.com'
 #export GIT_AUTHOR_NAME='Rey Abe'
 #export GIT_AUTHOR_EMAIL='rey@reyabe.com'
 #export JHICCUP=/home/aberey/jHiccup.1.1.4/bin
- 
+
 # library path for luajit
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib 
- 
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
 #if [ -e /usr/share/terminfo/x/xterm-256color ]; then
   export TERM='xterm-256color'
 #else
@@ -113,10 +113,10 @@ alias egrep='egrep --color=auto'
 #alias sbt='java -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xms4095m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar "$@"'
 #alias sbtjrock='/home/aberey/jrockit-jdk1.6.0_31-R28.2.3-4.1.0/bin/java -XgcPrio:deterministic -XpauseTarget=16ms -XXnosystemgc -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
 #alias sbtcms='java -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseConcMarkSweepGC -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtdbg='java -Xdebug-server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar' 
-#alias sbtyjp='java -agentpath:/home/aberey/yjp-12.0.2/bin/linux-x86-64/libyjpagent.so -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:MaxGCPauseMillis=10 -XX:+UseAdaptiveSizePolicy -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar' 
-#alias sbtjhi='java -javaagent:$JHICCUP/jHiccup.jar="-i 1000 -l hiccuplog -c c.hiccuplog" -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar' 
-#alias sbtjpr='java -agentpath:/home/aberey/jprofiler7/bin/linux-x64/libjprofilerti.so=port=8849,nowait -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar' 
+#alias sbtdbg='java -Xdebug-server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
+#alias sbtyjp='java -agentpath:/home/aberey/yjp-12.0.2/bin/linux-x86-64/libyjpagent.so -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:MaxGCPauseMillis=10 -XX:+UseAdaptiveSizePolicy -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
+#alias sbtjhi='java -javaagent:$JHICCUP/jHiccup.jar="-i 1000 -l hiccuplog -c c.hiccuplog" -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
+#alias sbtjpr='java -agentpath:/home/aberey/jprofiler7/bin/linux-x64/libjprofilerti.so=port=8849,nowait -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
 
 alias shutdown='sudo /sbin/shutdown -h now'
 
@@ -137,7 +137,7 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
 
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
- 
+
 export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
 . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
 
@@ -146,4 +146,5 @@ export HOMEBREW_GITHUB_API_TOKEN="62ee255873afeb54af3cb26f2c940311d2"
 
 eval "$(direnv hook zsh)"
 
-eval "$(docker-machine env ganesha-mille-1)"
+eval "$(docker-machine env default)"
+export DOCKER_HOST_ADDR=$(docker-machine ip)
