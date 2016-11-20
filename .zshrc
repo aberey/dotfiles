@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH
-# export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
+export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -139,7 +139,7 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
 
 export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.powerline
+. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
 
 
 export HOMEBREW_GITHUB_API_TOKEN="e8e096cca081bd66c97ca40a5f4eaf26c0551779"
