@@ -139,10 +139,14 @@ alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
 
 export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.powerline
 
 
-export HOMEBREW_GITHUB_API_TOKEN="62ee255873afeb54af3cb26f2c940311d2"
+export HOMEBREW_GITHUB_API_TOKEN="e8e096cca081bd66c97ca40a5f4eaf26c0551779"
+export GITHUB_TOKEN="e8e096cca081bd66c97ca40a5f4eaf26c0551779"
+
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
+export GOPATH=/usr/local/opt/go
 
 eval "$(direnv hook zsh)"
 
