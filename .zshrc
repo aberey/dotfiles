@@ -51,19 +51,17 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+<<<<<<< HEAD
 # export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
+=======
+# export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
+>>>>>>> 45f7fa4c337dc5e6d437a143922931db3ea75704
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -76,18 +74,6 @@ export LANG=en_US.UTF-8
 
 #export http_proxy=http://172.16.1.10:8080
 #export https_proxy=http://172.16.1.10:8080
-#export JAVA_HOME=/usr/java/jdk1.7.0_02/
-#export SCALA_HOME=~/scala-2.9.2/
-#export ANT_HOME=~/apache-ant-1.8.4/
-#export P4CONFIG=.p4config
-#export GIT_COMMITTER_NAME='Rey Abe'
-#export GIT_COMMITTER_EMAIL='rey@reyabe.com'
-#export GIT_AUTHOR_NAME='Rey Abe'
-#export GIT_AUTHOR_EMAIL='rey@reyabe.com'
-#export JHICCUP=/home/aberey/jHiccup.1.1.4/bin
-
-# library path for luajit
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 #if [ -e /usr/share/terminfo/x/xterm-256color ]; then
   export TERM='xterm-256color'
@@ -96,15 +82,13 @@ export LANG=en_US.UTF-8
 #fi
 
 case `uname` in
-	Darwin)
-		alias ls='gls -laGv --color=auto --group-directories-first'
-		;;
-	Linux)
-		alias ls='gls -laGv --color=auto --group-directories-first'
-		;;
+  Darwin)
+    alias ls='gls -laGv --color=auto --group-directories-first'
+    ;;
+  Linux)
+    alias ls='gls -laGv --color=auto --group-directories-first'
+    ;;
 esac
-
-#alias vim="/usr/local/bin/vim"
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -141,14 +125,23 @@ alias vimrc='vim ~/.vim/vimrc'
 export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
 . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
 
-
-export HOMEBREW_GITHUB_API_TOKEN="e8e096cca081bd66c97ca40a5f4eaf26c0551779"
-export GITHUB_TOKEN="e8e096cca081bd66c97ca40a5f4eaf26c0551779"
-
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
 export GOPATH=/usr/local/opt/go
+
+export PATH=$PATH:/usr/local/lib/spark/bin
+export SPARK_HOME=/usr/local/lib/spark
+
+export PATH=$PATH:/usr/local/lib/hadoop/bin
+export HADOOP_HOME=/usr/local/lib/hadoop
+export HADOOP_PREFIX=/usr/local/lib/hadoop
 
 eval "$(direnv hook zsh)"
 
 eval "$(docker-machine env default)"
 export DOCKER_HOST_ADDR=$(docker-machine ip)
+
+export ROS_HOSTNAME=172.19.212.217
+export ROS_MASTER_URI=http://172.19.212.217:11311
+
+source ~/.credentials
+

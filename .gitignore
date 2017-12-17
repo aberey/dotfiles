@@ -2,6 +2,7 @@
 .DS_Store
 .Xauthority
 .bash_history
+.credentials
 .lesshst
 .rnd
 .scala_history
