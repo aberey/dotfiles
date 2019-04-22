@@ -51,12 +51,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-<<<<<<< HEAD
 # export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
-=======
-# export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
->>>>>>> 45f7fa4c337dc5e6d437a143922931db3ea75704
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -67,10 +63,6 @@ export LANG=en_US.UTF-8
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #export http_proxy=http://172.16.1.10:8080
 #export https_proxy=http://172.16.1.10:8080
@@ -121,9 +113,15 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
 
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
+alias docker-gc='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc'
 
 export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
-. ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
+  . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+fi
+if [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
+  . /usr/share/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+fi
 
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
 export GOPATH=/usr/local/opt/go
@@ -143,5 +141,12 @@ export DOCKER_HOST_ADDR=$(docker-machine ip)
 export ROS_HOSTNAME=172.19.212.217
 export ROS_MASTER_URI=http://172.19.212.217:11311
 
-source ~/.credentials
+if [ -f ~/.credentials ]; then
+  source ~/.credentials
+fi
+
+export NVM_DIR="$HOME/.nvm"
+if [ -f /usr/local/opt/nvm/nvm.sh ]; then
+  . /usr/local/opt/nvm/nvm.sh
+fi
 
