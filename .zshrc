@@ -67,6 +67,10 @@ export LANG=en_US.UTF-8
 #export http_proxy=http://172.16.1.10:8080
 #export https_proxy=http://172.16.1.10:8080
 
+# robotics seminar environment
+#export ROS_HOSTNAME=172.19.212.217
+#export ROS_MASTER_URI=http://172.19.212.217:11311
+
 #if [ -e /usr/share/terminfo/x/xterm-256color ]; then
   export TERM='xterm-256color'
 #else
@@ -149,4 +153,10 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
   . /usr/local/opt/nvm/nvm.sh
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc'; fi
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc'; fi
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/cyberagent-214-ganesha-043ccfecfeb7.json
 
