@@ -45,7 +45,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(ant brew docker docker-compose git mosh mvn osx sbt scala sudo terraform tmux vagrant)
+plugins=(aws brew cp docker docker-compose docker-machine git github golang helm kubectl man mvn node osx python sbt scala sudo terraform tmux ubuntu vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -82,7 +82,7 @@ case `uname` in
     alias ls='gls -laGv --color=auto --group-directories-first'
     ;;
   Linux)
-    alias ls='gls -laGv --color=auto --group-directories-first'
+    alias ls='ls -laGv --color=auto --group-directories-first'
     ;;
 esac
 
@@ -115,17 +115,11 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
 #alias addQ='git status --porcelain | grep "^?? " | cut -c4- | xargs git add'
 #alias addD='git status --porcelain | grep "^.D " | cut -c4- | xargs git rm'
 
+alias kc='kubectl'
+
 alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
 alias docker-gc='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc'
-
-export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
-if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
-  . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
-fi
-if [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
-  . /usr/share/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
-fi
 
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
 export GOPATH=/usr/local/opt/go
@@ -137,26 +131,41 @@ export PATH=$PATH:/usr/local/lib/hadoop/bin
 export HADOOP_HOME=/usr/local/lib/hadoop
 export HADOOP_PREFIX=/usr/local/lib/hadoop
 
-eval "$(direnv hook zsh)"
+# powerline
+export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
+if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
+  . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+fi
+if [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
+  . /usr/share/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
+fi
 
-eval "$(docker-machine env default)"
-export DOCKER_HOST_ADDR=$(docker-machine ip)
+if type "direnv" > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
-export ROS_HOSTNAME=172.19.212.217
-export ROS_MASTER_URI=http://172.19.212.217:11311
+if type "docker-machine" > /dev/null; then
+  eval "$(docker-machine env default)"
+  export DOCKER_HOST_ADDR=$(docker-machine ip)
+fi
 
 if [ -f ~/.credentials ]; then
   source ~/.credentials
 fi
 
-export NVM_DIR="$HOME/.nvm"
+# node version manager
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
+  export NVM_DIR="$HOME/.nvm"
   . /usr/local/opt/nvm/nvm.sh
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc' ]; then
+  . /Users/a14372/dev/google-cloud-sdk/path.zsh.inc
+fi
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc' ]; then
+  . /Users/a14372/dev/google-cloud-sdk/completion.zsh.inc
+fi
 export GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/cyberagent-214-ganesha-043ccfecfeb7.json
 
