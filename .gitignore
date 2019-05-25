@@ -16,7 +16,6 @@
 .account
 .bash_sessions
 .cache
-.config
 .coursier
 .docker
 .dropbox

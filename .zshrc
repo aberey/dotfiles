@@ -45,7 +45,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws brew cp docker docker-compose docker-machine git github golang kubectl man mvn node osx python sbt scala sudo terraform tmux ubuntu vagrant)
+plugins=(aws brew cp docker docker-compose docker-machine git github golang kubectl man mvn node osx python sbt scala sudo terraform tmux tmuxinator ubuntu vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,6 +122,8 @@ alias vimrc='vim ~/.vim/vimrc'
 alias docker-gc='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc'
 
 export SHELL=$(which zsh)
+
+export EDITOR=vim
 
 export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
 export GOPATH=/usr/local/opt/go
