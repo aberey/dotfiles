@@ -1,81 +1,88 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+# Homebrew shell completions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  autoload -Uz compinit && compinit
+fi
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+zinit light-mode depth=1 for \
+  romkatv/powerlevel10k \
+  OMZL::git.zsh \
+  OMZL::grep.zsh \
+  OMZL::history.zsh \
+  blockf OMZL::completion.zsh
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+# Load PowerLevel10K
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+zinit wait lucid light-mode depth=1 for \
+  atinit"zicompinit; zicdreplay" \
+  zdharma-continuum/fast-syntax-highlighting \
+  zdharma-continuum/history-search-multi-word \
+  atload"bindkey '^[[A' history-substring-search-up; \
+         bindkey '^[[B' history-substring-search-down" \
+  zsh-users/zsh-history-substring-search \
+  zsh-users/zsh-autosuggestions \
+  chitoku-k/fzf-zsh-completions \
+  joshskidmore/zsh-fzf-history-search \
+  OMZ::plugins/git/git.plugin.zsh \
+  OMZ::plugins/pip/pip.plugin.zsh \
+  OMZ::plugins/dotenv/dotenv.plugin.zsh \
+  OMZ::plugins/python/python.plugin.zsh \
+  OMZ::plugins/common-aliases/common-aliases.plugin.zsh \
+  MichaelAquilina/zsh-autoswitch-virtualenv \
+  MichaelAquilina/zsh-you-should-use \
+  supercrabtree/k
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+eval $(thefuck --alias)
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# fzf configs - ctrl-t for filesystem, ctrl-r for command history (latter will replace history-search-multi-word)
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse'
+source <(fzf --zsh)
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# anyframe configs - ctrl-t-ctrl-t for files, ctrl-r-ctrl-r for command history, ctrl-m-ctrl-m change directory
+zinit light mollifier/anyframe
+zstyle ":anyframe:selector:" use peco
+bindkey '^m^m' anyframe-widget-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+bindkey '^r^r' anyframe-widget-execute-history
+bindkey '^r^p' anyframe-widget-put-history
+bindkey '^g^b' anyframe-widget-insert-git-branch  # anyframe-widget-checkout-git-branch seems broken
+bindkey '^t^t' anyframe-widget-insert-filename
+alias aw=anyframe-widget-select-widget
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# zoxide for jumping directories
+eval "$(zoxide init --cmd cd zsh)"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# vim-like prompt keybinds
+bindkey '^j' backward-word
+bindkey '^k' forward-word
+bindkey '^h' backward-char
+bindkey '^l' forward-char
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(aws brew cp docker docker-compose docker-machine git github golang kubectl man mvn node osx python sbt scala sudo terraform tmux tmuxinator ubuntu vagrant)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH
-export PATH=$HOME/bin:/usr/local/bin:/opt/local/bin:$PATH:~/Library/Python/2.7/bin
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-#export http_proxy=http://172.16.1.10:8080
-#export https_proxy=http://172.16.1.10:8080
-
-# robotics seminar environment
-#export ROS_HOSTNAME=172.19.212.217
-#export ROS_MASTER_URI=http://172.19.212.217:11311
-
-#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-  export TERM='xterm-256color'
-#else
-	#export TERM='xterm-color'
-#fi
+export TERM='xterm-256color'
 
 case `uname` in
   Darwin)
@@ -85,18 +92,6 @@ case `uname` in
     alias ls='ls -laGv --color=auto --group-directories-first'
     ;;
 esac
-
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
-#alias sbt='java -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xms4095m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar "$@"'
-#alias sbtjrock='/home/aberey/jrockit-jdk1.6.0_31-R28.2.3-4.1.0/bin/java -XgcPrio:deterministic -XpauseTarget=16ms -XXnosystemgc -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtcms='java -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseConcMarkSweepGC -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtdbg='java -Xdebug-server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtyjp='java -agentpath:/home/aberey/yjp-12.0.2/bin/linux-x86-64/libyjpagent.so -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:MaxGCPauseMillis=10 -XX:+UseAdaptiveSizePolicy -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtjhi='java -javaagent:$JHICCUP/jHiccup.jar="-i 1000 -l hiccuplog -c c.hiccuplog" -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
-#alias sbtjpr='java -agentpath:/home/aberey/jprofiler7/bin/linux-x64/libjprofilerti.so=port=8849,nowait -Xdebug -server -XX:+UseNUMA -XX:+UseCondCardMark -XX:+UseAdaptiveSizePolicy -XX:MaxGCPauseMillis=10 -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005 -Xms4096m -Xmx8192m -XX:MaxPermSize=256M -Djline.terminal=jline.UnixTerminal -Dsbt.global.base=/home/aberey/.sbt -jar /home/aberey/sbt/sbt-launch-0.12.0.jar'
 
 alias shutdown='sudo /sbin/shutdown -h now'
 
@@ -117,32 +112,11 @@ alias ggls='for f in $(find . -name .git -a -type d); do d=${f%/.git}; echo ----
 
 alias kc='kubectl'
 
-alias zshrc='vim ~/.zshrc'
 alias vimrc='vim ~/.vim/vimrc'
-alias docker-gc='docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /etc:/etc spotify/docker-gc'
 
 export SHELL=$(which zsh)
-
 export EDITOR=vim
-
-export PATH=$PATH:/usr/local/opt/go/libexec/bin:/usr/local/Cellar/go/1.6.2/bin/
-export GOPATH=/usr/local/opt/go
-
-export PATH=$PATH:/usr/local/lib/spark/bin
-export SPARK_HOME=/usr/local/lib/spark
-
-export PATH=$PATH:/usr/local/lib/hadoop/bin
-export HADOOP_HOME=/usr/local/lib/hadoop
-export HADOOP_PREFIX=/usr/local/lib/hadoop
-
-# powerline
-export XDG_CONFIG_HOME=~/.config # for powerline configs to be picked up
-if [ -f ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh ]; then
-  . ~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
-fi
-if [ -f /usr/share/powerline/bindings/zsh/powerline.zsh ]; then
-  . /usr/share/powerline/bindings/zsh/powerline.zsh -p ~/.config/powerline
-fi
+export PATH="/usr/local/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/bin:$PATH"
 
 if type "direnv" > /dev/null; then
   eval "$(direnv hook zsh)"
@@ -153,23 +127,8 @@ if type "docker-machine" > /dev/null; then
   export DOCKER_HOST_ADDR=$(docker-machine ip)
 fi
 
-if [ -f ~/.credentials ]; then
-  source ~/.credentials
-fi
-
 # node version manager
 if [ -f /usr/local/opt/nvm/nvm.sh ]; then
   export NVM_DIR="$HOME/.nvm"
   . /usr/local/opt/nvm/nvm.sh
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/a14372/dev/google-cloud-sdk/path.zsh.inc' ]; then
-  . /Users/a14372/dev/google-cloud-sdk/path.zsh.inc
-fi
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/a14372/dev/google-cloud-sdk/completion.zsh.inc' ]; then
-  . /Users/a14372/dev/google-cloud-sdk/completion.zsh.inc
-fi
-export GOOGLE_APPLICATION_CREDENTIALS=~/.gcp/cyberagent-214-ganesha-043ccfecfeb7.json
-
