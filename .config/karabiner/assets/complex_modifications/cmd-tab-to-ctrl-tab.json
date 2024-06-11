@@ -1,0 +1,38 @@
+{
+  "title": "Cmd Tab remap for Citrix",
+  "rules": [
+    {
+      "description": "Cmd Tab remap",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "tab",
+            "modifiers": {
+              "mandatory": [
+                "left_control"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "tab",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com.citrix.XenAppViewer"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

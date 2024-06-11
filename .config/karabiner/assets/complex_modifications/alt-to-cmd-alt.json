@@ -1,0 +1,30 @@
+{
+  "title": "Alt to CmdAlt only in Citrix",
+  "rules": [
+    {
+      "description": "Alt to CmdAlt",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "left_option"
+          },
+          "to": [
+            {
+              "key_code": "left_control",
+              "modifiers": "left_command"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com.citrix.XenAppViewer"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
