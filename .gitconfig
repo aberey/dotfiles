@@ -4,9 +4,7 @@
 	required = true
 [user]
 	name = Rey Abe
-	email = abe_rey@cyberagent.co.jp
-[core]
-	excludesfile = /Users/a14372/.gitignore_global
+	email = rey@reyabe.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -17,3 +15,8 @@
 	pr = "!f() { git fetch -fu ${2:-upstream} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
 	pr-clean = "!git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 	spr = "!f() { git fetch -fu ${2:-upstream} refs/pull-requests/$1/from:pr/$1 && git checkout pr/$1; }; f"
+[credential]
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
