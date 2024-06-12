@@ -116,7 +116,7 @@ alias vimrc='vim ~/.vim/vimrc'
 
 export SHELL=$(which zsh)
 export EDITOR=vim
-export PATH="/usr/local/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/bin:$PATH"
+#export PATH="/usr/local/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/bin:$PATH"
 
 if type "direnv" > /dev/null; then
   eval "$(direnv hook zsh)"
